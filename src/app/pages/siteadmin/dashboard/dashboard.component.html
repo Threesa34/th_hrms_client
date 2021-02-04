@@ -1,0 +1,100 @@
+
+<div class="container-fluid mb-4">
+   
+   <!--  <div class="col-12">
+        <div class="card">
+            <div class="col-12 mt-2 mb-2">
+                <h2>Sell against stock</h2>
+                <hr>
+            </div>
+            <p-chart type="bar" [data]="barchart_data"></p-chart>
+        </div>
+    </div> -->
+
+    <div class="col-12">
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-sm-12  mt-3">
+            <div class="card">
+                <div class="col-12 mt-2 mb-2">
+                    <h2>TOTAL LOAN REQUEST v/s RECIEPT</h2>
+                    <hr>
+                </div>
+                <p-chart type="pie" [data]="pie_data"></p-chart>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-sm-12 mt-3">
+            <div class="card">
+                <div class="table-responsive" style="height:27.5em;" *ngIf="!showChatBox">
+                    <mat-list>
+                        <mat-list-item *ngFor="let _data of usersList">
+                        
+                          <div mat-card-avatar mat-list-icon  (click)="showImage(_data.profilepic)" [ngStyle]="{background: 'url(http://192.168.0.100:8895/uploads/employee/' + _data.profilepic + ')', 'background-size': 'cover'}"></div>
+                          <div mat-line  (click)="getChat(_data)">{{_data.name}}<sub> ({{_data.role_name}})</sub></div>
+                          <div mat-line (click)="getChat(_data)"> {{_data.dob | date}} </div>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                      </mat-list>
+                </div>
+
+                <div *ngIf="showChatBox" style="height:27.5em;position: relative;">
+                    <mat-toolbar color="primary">
+                        <a mat-icon-button class="example-icon" (click)="showChatBox = !showChatBox" aria-label="Example icon-button with menu icon">
+                          <mat-icon>arrow_back</mat-icon>
+                        </a>
+                        <mat-list>
+                            <mat-list-item class="chat-avatar">
+                              <div mat-card-avatar mat-list-icon  (click)="showImage(selectedUser.profilepic)" [ngStyle]="{background: 'url(http://192.168.0.100:8895/uploads/employee/' + selectedUser.profilepic + ')', 'background-size': 'cover'}"></div>
+                            </mat-list-item>
+                          </mat-list>
+                          <span mat-line>{{selectedUser.name}}</span>
+                        <span class="example-spacer"></span>
+                        <a mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </a>
+                          <mat-menu #menu="matMenu">
+                            <a mat-menu-item>
+                              <mat-icon>dialpad</mat-icon>
+                              <span>Redial</span>
+                            </a>
+                            <a mat-menu-item disabled>
+                              <mat-icon>voicemail</mat-icon>
+                              <span>Check voice mail</span>
+                            </a>
+                            <a mat-menu-item>
+                              <mat-icon>notifications_off</mat-icon>
+                              <span>Disable alerts</span>
+                            </a>
+                          </mat-menu>
+                      </mat-toolbar>
+
+                     <!-- 
+                        <main class="msger-chat">
+                          <div *ngFor="let _data of chatLogDetails" class="mt-2" [ngClass]="{'msg right-msg': _data.sender === _id, 'msg left-msg':_data.reciever === _id }">
+                            <div class="msg-bubble">
+                              <div class="col-12">
+                                {{_data.msg}}
+                              </div>
+                              <div class="col-12 text-right ">
+                                <div class="msg-info-time">{{_data.date}} {{_data.time}}</div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                        </main>
+                      
+                        <div class="msger-inputarea col-12">
+                          <textarea type="text" class="msger-input" [(ngModel)]="chatDetails.msg" placeholder="Enter your message..."></textarea>
+                          <button (click)="sendMessage()" class="msger-send-btn btn-info">Send</button>
+                        </div> -->
+                  
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+
+   
+</div>

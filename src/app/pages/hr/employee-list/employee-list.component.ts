@@ -90,6 +90,7 @@ this.yearsRange = range(currentYear, currentYear - 10, -1);
 
 }
 
+
 @Component({
   selector: 'shift-assignment',
   templateUrl: './sub_modules/shift-assignment.html',
@@ -139,6 +140,60 @@ export class shiftAssignment implements OnInit{
    userids = userids.substr(0, userids.length - 1);
 
     this._MastersService.saveshiftAssignmentDetails({uerids:userids, shiftid:this.shift_assignment_details.shiftdetails.id }).subscribe((res: any) => {
+      var resAlert ={
+        title: res.title,
+        text: res.message,
+        type: res.type,
+      }
+       Swal.fire(resAlert).then((result) => {
+        if (res.status === 1) {
+          
+        } else {
+        }
+      }); 
+    });
+  } 
+
+
+}
+
+@Component({
+  selector: 'set-attendance',
+  templateUrl: './sub_modules/set-attendance.html',
+  styleUrls: ['./employee-list.component.scss']
+})
+export class setAttendance implements OnInit{
+  
+  attendanceDetails:any = {};
+
+  constructor(private _MastersService : MastersService, @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  employeesList:any;
+
+  ngOnInit(): void {
+    this.employeesList = this.data;
+  }
+
+ 
+ RemoveEmployeeFromList(i)
+{
+   if(i != undefined)
+   {
+    this.employeesList.splice(i, 1);
+   }
+}
+   saveAttendanceDetails()
+  {
+   
+    var userids = [];
+   this.employeesList.map(function(value)
+   {
+     userids.push(value.id);
+   });
+
+  //  userids = userids.substr(0, userids.length - 1);
+
+    this._MastersService.saveAttendanceDetails({uerids:userids, attendanceDetails:this.attendanceDetails}).subscribe((res: any) => {
       var resAlert ={
         title: res.title,
         text: res.message,
@@ -376,6 +431,12 @@ export class EmployeeListComponent implements OnInit {
 
  openDialog(){  
   var dialogRef = this.dialog.open(shiftAssignment,{width: '50%',data:this.selectedRows});
+  dialogRef.afterClosed().subscribe(result => {
+  });
+}
+
+openAttendanceDialog(){  
+  var dialogRef = this.dialog.open(setAttendance,{width: '50%',data:this.selectedRows});
   dialogRef.afterClosed().subscribe(result => {
   });
 }

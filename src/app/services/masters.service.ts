@@ -201,6 +201,13 @@ export class MastersService {
     }));
   }
 
+  saveAttendanceDetails(attendanceDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/saveAttendanceDetails/',attendanceDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
   setAttendance(attendanceDetails):Observable<any>
   {
     return this.httpClient.post(environment.endpoint_url+'/api/setAttendance/',attendanceDetails).pipe(map(data => {
@@ -461,6 +468,13 @@ public getMessages = () => {
   }));
   }
 
+  getNewsletterFeedback():Observable<any>
+  {
+    return this.httpClient.get(environment.endpoint_url+'/api/getNewsletterFeedback/').pipe(map(data => {
+      return data;
+  }));
+  }
+
   getnewsLetterJsonTemplate(id):Observable<any>
   {
     return this.httpClient.get(environment.endpoint_url+'/api/getnewsLetterJsonTemplate/'+id).pipe(map(data => {
@@ -476,6 +490,19 @@ public getMessages = () => {
   }
  
   
+  invokefeedbackList = new EventEmitter();    
+  subsFeedbackList: Subscription;  
+
+  EmitFeedbackList(){
+    this.invokefeedbackList.emit();
+  }
+  
+  saveCustomerFeedback(feedbackDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/saveCustomerFeedback/',feedbackDetails).pipe(map(data => {
+      return data;
+  }));
+  }
 
   
   saveNewsLetter(templateDetails):Observable<any>

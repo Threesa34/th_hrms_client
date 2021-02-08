@@ -5,7 +5,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModules } from '../../shared/material-modules';
 import { HrRoutingModule } from './hr-routing.module';
-import { EmployeeListComponent, shiftAssignment, attendanceReport, apprisalHistory } from './employee-list/employee-list.component';
+import { EmployeeListComponent, shiftAssignment, attendanceReport, apprisalHistory, setAttendance } from './employee-list/employee-list.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { AttendanceListComponent } from './attendance-list/attendance-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -19,7 +19,7 @@ import { AttendanceReportComponent } from './attendance-report/attendance-report
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
-  declarations: [EmployeeListComponent, shiftAssignment, attendanceReport, apprisalHistory, EmployeeDetailsComponent, AttendanceListComponent, DashboardComponent, ShiftManagementComponent, shiftDetails, SalaryManagementComponent, salaryDetails, SalaryProcessComponent, LoanRequestComponent, loanRequestDetails, LoanPaymentComponent, loanRecieptDetails, LeaveManagementComponent, leavesDetails, AttendanceReportComponent],
+  declarations: [EmployeeListComponent, shiftAssignment, attendanceReport, apprisalHistory, setAttendance, EmployeeDetailsComponent, AttendanceListComponent, DashboardComponent, ShiftManagementComponent, shiftDetails, SalaryManagementComponent, salaryDetails, SalaryProcessComponent, LoanRequestComponent, loanRequestDetails, LoanPaymentComponent, loanRecieptDetails, LeaveManagementComponent, leavesDetails, AttendanceReportComponent],
   imports: [
     CommonModule,
     HrRoutingModule,

@@ -297,7 +297,7 @@ shareOnWhatsApp()
  
   url = url+this.newsLetterDetails.description;
 
-  if(this.newsLetterDetails.shorten_url != undefined && this.newsLetterDetails.shorten_url == null && this.newsLetterDetails.shorten_url == '')
+  if(this.newsLetterDetails.shorten_url != undefined && this.newsLetterDetails.shorten_url != null && this.newsLetterDetails.shorten_url != '')
   {
     url = url+'%0AClick the link below:%0A'+this.newsLetterDetails.shorten_url;
   }

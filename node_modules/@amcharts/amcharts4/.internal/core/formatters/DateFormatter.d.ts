@@ -71,6 +71,13 @@ export declare class DateFormatter extends BaseObject {
      */
     protected _timezone: $type.Optional<string>;
     /**
+     * If `timezone` is set, this will hold minute fraction of the timezone.
+     *
+     * @readonly
+     * @ignore
+     */
+    timezoneMinutes: number;
+    /**
      * First day of week.
      *
      * 0 - Sunday
@@ -165,6 +172,7 @@ export declare class DateFormatter extends BaseObject {
      * @return Date object
      */
     parse(source: any, format?: string): Date;
+    protected resolveTimezoneOffset(date: Date, zone: string): number;
     /**
      * Resolves month name (i.e. "December") into a month number (11).
      *

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endpoint_url:'http://192.168.0.100:8895'
+  endpoint_url:'http://103.252.7.5:8895'
 };
 
 /*

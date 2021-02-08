@@ -29,7 +29,7 @@
                     <mat-list>
                         <mat-list-item *ngFor="let _data of usersList">
                         
-                          <div mat-card-avatar mat-list-icon  (click)="showImage(_data.profilepic)" [ngStyle]="{background: 'url(http://192.168.0.100:8895/uploads/employee/' + _data.profilepic + ')', 'background-size': 'cover'}"></div>
+                          <div mat-card-avatar mat-list-icon  (click)="showImage(_data.profilepic)" [ngStyle]="{background: 'url(http://103.252.7.5:8895/uploads/employee/' + _data.profilepic + ')', 'background-size': 'cover'}"></div>
                           <div mat-line  (click)="getChat(_data)">{{_data.name}}<sub> ({{_data.role_name}})</sub></div>
                           <div mat-line (click)="getChat(_data)"> {{_data.dob | date}} </div>
                         </mat-list-item>
@@ -44,7 +44,7 @@
                         </a>
                         <mat-list>
                             <mat-list-item class="chat-avatar">
-                              <div mat-card-avatar mat-list-icon  (click)="showImage(selectedUser.profilepic)" [ngStyle]="{background: 'url(http://192.168.0.100:8895/uploads/employee/' + selectedUser.profilepic + ')', 'background-size': 'cover'}"></div>
+                              <div mat-card-avatar mat-list-icon  (click)="showImage(selectedUser.profilepic)" [ngStyle]="{background: 'url(http://103.252.7.5:8895/uploads/employee/' + selectedUser.profilepic + ')', 'background-size': 'cover'}"></div>
                             </mat-list-item>
                           </mat-list>
                           <span mat-line>{{selectedUser.name}}</span>

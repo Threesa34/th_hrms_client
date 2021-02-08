@@ -1,5 +1,5 @@
 var path = require('path');
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+var TerserPlugin = require('terser-webpack-plugin');
 var StringReplacePlugin = require("string-replace-webpack-plugin");
 var webpack = require('webpack');
 var pkg = require('./package.json');
@@ -42,7 +42,8 @@ module.exports = {
 								return "var fs = require('fs');";
 							}
 						}
-					]})
+					]
+				})
 			},
 			{
 				test: /\.js$/,
@@ -80,7 +81,8 @@ module.exports = {
 
 			/* temporary bugfix for FileSaver: added hack for mobile device support, see https://github.com/bpampuch/pdfmake/issues/1664 */
 			/* waiting to merge and release PR https://github.com/eligrey/FileSaver.js/pull/533 */
-			{test: /FileSaver.min.js$/, loader: StringReplacePlugin.replace({
+			{
+				test: /FileSaver.min.js$/, loader: StringReplacePlugin.replace({
 					replacements: [
 						{
 							pattern: '"download"in HTMLAnchorElement.prototype',
@@ -88,26 +90,35 @@ module.exports = {
 								return '(typeof HTMLAnchorElement !== "undefined" && "download" in HTMLAnchorElement.prototype)';
 							}
 						}
-					]})
+					]
+				})
 			},
 
-			{enforce: 'post', test: /fontkit[/\\]index.js$/, loader: "transform-loader?brfs"},
-			{enforce: 'post', test: /unicode-properties[/\\]index.js$/, loader: "transform-loader?brfs"},
-			{enforce: 'post', test: /linebreak[/\\]src[/\\]linebreaker.js/, loader: "transform-loader?brfs"}
+			{ enforce: 'post', test: /fontkit[/\\]index.js$/, loader: "transform-loader?brfs" },
+			{ enforce: 'post', test: /unicode-properties[/\\]index.js$/, loader: "transform-loader?brfs" },
+			{ enforce: 'post', test: /linebreak[/\\]src[/\\]linebreaker.js/, loader: "transform-loader?brfs" }
 		]
 	},
 	optimization: {
 		minimizer: [
-			new UglifyJsPlugin({
+			new TerserPlugin({
 				include: /\.min\.js$/,
 				sourceMap: true,
-				uglifyOptions: {
+				extractComments: false,
+				terserOptions: {
+					format: {
+						preamble: banner,
+						comments: false,
+					},
+					output: {
+						preamble: banner,
+						comments: false,
+					},
 					compress: {
 						drop_console: true
 					},
-					mangle: {
-						reserved: ['HeadTable', 'NameTable', 'CmapTable', 'HheaTable', 'MaxpTable', 'HmtxTable', 'PostTable', 'OS2Table', 'LocaTable', 'GlyfTable']
-					}
+					keep_classnames: true,
+					keep_fnames: true
 				}
 			})
 		]

@@ -65,6 +65,8 @@ export class NewsLettersComponent implements OnInit {
        filterParams: {
          resetButton: true,
          suppressAndOrCondition: true,
+         enableCellTextSelection:true,
+          ensureDomOrder:true,
        },
      },
      {
@@ -109,6 +111,7 @@ export class NewsLettersComponent implements OnInit {
      enableRowGroup: true,
      enablePivot: true,
      enableValue: true,
+     editable: true,
      filter: true,
      menuTabs: ['filterMenuTab'],
    };

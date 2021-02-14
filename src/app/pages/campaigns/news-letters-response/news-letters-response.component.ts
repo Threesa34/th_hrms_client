@@ -147,7 +147,7 @@ export class NewsLettersResponseComponent implements OnInit {
        },
      },
      {
-       headerName: "message", 
+       headerName: "Address", 
        field: 'message',
        filterParams: {
          resetButton: true,

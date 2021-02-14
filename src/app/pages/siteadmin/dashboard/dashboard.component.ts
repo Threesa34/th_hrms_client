@@ -156,11 +156,7 @@ barchart_data: any;
   {
 
     var resAlert ={
-<<<<<<< HEAD
       imageUrl: 'http://103.252.7.5:8895/uploads/employee/'+imgfile,
-=======
-      imageUrl: 'http://192.168.0.138:8895/uploads/employee/'+imgfile,
->>>>>>> 4984b8a941386539cdb85ec1ec7ff87562876d94
         imageWidth: 400,
         imageHeight: 400,
         animation: true,

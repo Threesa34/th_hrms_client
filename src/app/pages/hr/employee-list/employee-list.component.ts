@@ -112,7 +112,7 @@ export class shiftAssignment implements OnInit{
   shiftList:any;
   getWorkingShiftList()
  {
-   this._MastersService.getWorkingShiftList().subscribe((res:any)=>{
+   this._MastersService.getActivateWorkingShiftList().subscribe((res:any)=>{
      if(!res.status)
    {
      this.shiftList = res;

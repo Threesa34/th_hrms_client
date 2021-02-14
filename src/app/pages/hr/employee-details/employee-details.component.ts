@@ -147,7 +147,7 @@ export class EmployeeDetailsComponent implements OnInit {
   workingShiftList:any;
   getworkingShiftList()
   {
-    this._MastersService.getWorkingShiftList().subscribe((res:any)=>{
+    this._MastersService.getActivateWorkingShiftList().subscribe((res:any)=>{
       if(!res.status)
     {
       this.workingShiftList = res;

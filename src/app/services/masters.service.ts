@@ -153,6 +153,13 @@ export class MastersService {
       return data;
     }));
   }
+  getActivateWorkingShiftList():Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getActivateWorkingShiftList').pipe(map(data => {
+      return data;
+    }));
+  }
+  
 
   getshiftDetails(id):Observable<any>
   {

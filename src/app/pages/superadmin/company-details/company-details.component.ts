@@ -16,7 +16,7 @@ export class CompanyDetailsComponent implements OnInit {
   ShowReset = false;
 
 
-  companyDetails:any = {};
+  companyDetails:any;
   countriesList:any;
   statesList:any;
   citiesList:any;
@@ -36,11 +36,12 @@ export class CompanyDetailsComponent implements OnInit {
 
     var companyid = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     if(companyid && companyid > 0){
+      this.companyDetails = {};
       this.getCompanyDetails(companyid);
-    
     }
     else
     {
+      this.companyDetails = {};
       if(this.companyDetails.logo == undefined)
         {
           this.logo = 'http://localhost:8018/uploads/company/default.jpg';
@@ -138,9 +139,12 @@ export class CompanyDetailsComponent implements OnInit {
   getCompanyDetails(companyid)
   {
     this._MastersService.getCompanyDetails(companyid).subscribe((res:any)=>{
-      if(!res.status)
+      
       {
         this.companyDetails = res;
+        
+        console.log(this.companyDetails);
+
         this.logo = this.companyDetails.logo;
         this.getStatesOnCountry(this.companyDetails.country);
         this.getCityListOnState(this.companyDetails.state);
@@ -148,6 +152,7 @@ export class CompanyDetailsComponent implements OnInit {
       
     });
   }
+
 
 
 }

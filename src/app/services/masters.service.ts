@@ -252,6 +252,34 @@ export class MastersService {
     }));
   }
 
+  getLeaveshistory(id):Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getLeaveshistory/'+id).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getLoanHistory(id):Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getLoanHistory/'+id).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getreviewsList(id, reviewMonth):Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getreviewsList/'+id+'/'+reviewMonth).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getSalarySlipList(id):Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getSalarySlipList/'+id).pipe(map(data => {
+      return data;
+    }));
+  }
+
   getSalaryApprisalDetails(id):Observable<any>
   {
     return this.httpClient.get<any>(environment.endpoint_url+'/api/getSalaryApprisalDetails/'+id).pipe(map(data => {
@@ -276,6 +304,41 @@ export class MastersService {
   getAttendanceReport(employeeDetails):Observable<any>
   {
     return this.httpClient.post(environment.endpoint_url+'/api/getAttendanceReport/',employeeDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
+  saveSalarySlip(salaryDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/saveSalarySlip/',salaryDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
+  saveSalarySlipInPDF(salaryDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/saveSalarySlipInPDF/',salaryDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
+  checkSalaryProceedStatus(salaryDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/checkSalaryProceedStatus/',salaryDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
+  getloanRecieptdDetails(employeeDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/getloanRecieptdDetails/',employeeDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
+  getEmployeeSalaryDetails(employeeDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/getEmployeeSalaryDetails/',employeeDetails).pipe(map(data => {
       return data;
   }));
   }

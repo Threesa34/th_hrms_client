@@ -18,6 +18,7 @@ import { AccordionDirective } from './shared/accordion/accordion.directive';
 import { AccordionAnchorDirective } from './shared/accordion/accordionanchor.directive';
 import { NavigationListComponent } from './layout/admin/navigation-list/navigation-list.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
 import { environment } from '../environments/environment';
 
 const config: SocketIoConfig = { url: environment.endpoint_url, options: {} };

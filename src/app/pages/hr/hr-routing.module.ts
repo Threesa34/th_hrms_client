@@ -11,6 +11,18 @@ import { LoanRequestComponent } from './loan-request/loan-request.component';
 import { LoanPaymentComponent } from './loan-payment/loan-payment.component';
 import { LeaveManagementComponent } from './leave-management/leave-management.component';
 import { AttendanceReportComponent } from './attendance-report/attendance-report.component';
+
+function getSalaryMonth()
+{
+  var salaryMonth = '';
+  var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const d = new Date();
+    salaryMonth = monthNames[d.getMonth()]+'-'+d.getFullYear();
+
+  return salaryMonth;
+}
+
+
 const routes: Routes = [
   {
     path: '',

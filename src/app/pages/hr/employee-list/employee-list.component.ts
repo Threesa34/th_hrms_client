@@ -253,6 +253,179 @@ export class apprisalHistory implements OnInit{
 }
 
 
+@Component({
+  selector: 'loan-history',
+  templateUrl: './sub_modules/loan-history.html',
+  styleUrls: ['./employee-list.component.scss']
+})
+export class loanHistory implements OnInit{
+
+  constructor(private _MastersService : MastersService, @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  loanList:any;
+  employeeDetails:any ={};
+  ngOnInit(): void {
+    this.getLoanHistory();
+    this.employeeDetails = this.data;
+  }
+
+  getLoanHistory()
+ {
+   this._MastersService.getLoanHistory(this.data[0].id).subscribe((res:any)=>{
+
+     this.loanList = res;
+ 
+   });
+ }
+
+ formatFullName(text)
+  {
+    var formatedtext = '';
+    formatedtext = formatedtext + text;
+    if(formatedtext.trim().charAt(formatedtext.length -1) == '.')
+      return formatedtext;
+      else
+      return formatedtext+'.';
+  }
+
+}
+
+@Component({
+  selector: 'employee-rating',
+  templateUrl: './sub_modules/employee-rating.html',
+  styleUrls: ['./employee-list.component.scss']
+})
+export class employeeReview implements OnInit{
+
+  selectedMonth:String;
+
+  constructor(private _MastersService : MastersService, @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  reviewsList:any;
+  employeeDetails:any ={};
+  ngOnInit(): void {
+    this.employeeDetails = this.data;
+    var d = new Date();
+    var mm:any =  d.getMonth()+1;
+    if(mm < 10)
+    {
+      mm = '0'+String(mm);
+    }
+
+    this.selectedMonth = d.getFullYear()+'-'+mm;
+
+    this.getreviewsList(this.selectedMonth);
+  }
+
+  getreviewsList(selectedMonth)
+ {
+   console.log('here');
+   this._MastersService.getreviewsList(this.data[0].id, selectedMonth).subscribe((res:any)=>{
+
+     this.reviewsList = res;
+      console.log(this.reviewsList)
+   });
+ }
+
+ formatFullName(text)
+  {
+    var formatedtext = '';
+    formatedtext = formatedtext + text;
+    if(formatedtext.trim().charAt(formatedtext.length -1) == '.')
+      return formatedtext;
+      else
+      return formatedtext+'.';
+  }
+
+}
+
+
+@Component({
+  selector: 'salary-slip-history',
+  templateUrl: './sub_modules/salary-slip-history.html',
+  styleUrls: ['./employee-list.component.scss']
+})
+export class salarySlipHistory implements OnInit{
+
+  constructor(private _MastersService : MastersService, @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  salarySlipList:any;
+  employeeDetails:any ={};
+  ngOnInit(): void {
+    this.getSalarySlipList();
+    this.employeeDetails = this.data;
+  }
+
+  getSalarySlipList()
+ {
+   this._MastersService.getSalarySlipList(this.data[0].id).subscribe((res:any)=>{
+     if(!res.status)
+   {
+     this.salarySlipList = res;
+ 
+   }
+   });
+ }
+
+ openPdf(salarydetails, employee_name)
+ {
+  
+  var filename = 'salarySlip_'+employee_name+'-'+salarydetails.salary_month+'.pdf';
+      filename = filename.replace(/ /g,"_");
+      window.open('http://103.252.7.5:8895/salarySlips/'+filename, '_blank');
+    
+ }
+
+
+ formatFullName(text)
+  {
+    var formatedtext = '';
+    formatedtext = formatedtext + text;
+    if(formatedtext.trim().charAt(formatedtext.length -1) == '.')
+      return formatedtext;
+      else
+      return formatedtext+'.';
+  }
+
+}
+
+@Component({
+  selector: 'leave-history',
+  templateUrl: './sub_modules/leave-history.html',
+  styleUrls: ['./employee-list.component.scss']
+})
+export class leaveHistory implements OnInit{
+
+  constructor(private _MastersService : MastersService, @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  leavesList:any;
+  employeeDetails:any ={};
+  ngOnInit(): void {
+    this.getLeaveshistory();
+    this.employeeDetails = this.data;
+  }
+
+  getLeaveshistory()
+ {
+   this._MastersService.getLeaveshistory(this.data[0].id).subscribe((res:any)=>{
+     this.leavesList = res;
+   });
+ }
+
+
+ formatFullName(text)
+  {
+    var formatedtext = '';
+    formatedtext = formatedtext + text;
+    if(formatedtext.trim().charAt(formatedtext.length -1) == '.')
+      return formatedtext;
+      else
+      return formatedtext+'.';
+  }
+
+}
+
+
 
 @Component({
   selector: 'app-employee-list',
@@ -449,6 +622,30 @@ openAttendanceDialog(){
 
  openApprisalHistory(){  
   var dialogRef = this.dialog.open(apprisalHistory,{width: '50%',data:this.selectedRows});
+  dialogRef.afterClosed().subscribe(result => {
+  });
+}
+
+openLoanHistory(){  
+  var dialogRef = this.dialog.open(loanHistory,{width: '50%',data:this.selectedRows});
+  dialogRef.afterClosed().subscribe(result => {
+  });
+}
+
+openSalarySlipsHistory(){  
+  var dialogRef = this.dialog.open(salarySlipHistory,{width: '50%',data:this.selectedRows});
+  dialogRef.afterClosed().subscribe(result => {
+  });
+}
+
+openLeavesHistory(){  
+  var dialogRef = this.dialog.open(leaveHistory,{width: '50%',data:this.selectedRows});
+  dialogRef.afterClosed().subscribe(result => {
+  });
+}
+
+openemployeeReview(){  
+  var dialogRef = this.dialog.open(employeeReview,{width: '50%',data:this.selectedRows});
   dialogRef.afterClosed().subscribe(result => {
   });
 }

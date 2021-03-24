@@ -56,4 +56,20 @@ export class LoginComponent implements OnInit {
     
   }
 
+  visibiity_icon:String = 'visibility';
+  input_type:String = 'password';
+  showHidePassword()
+  {
+      if(this.input_type == 'password')
+      {
+        this.input_type = 'text';
+        this.visibiity_icon = 'visibility_off';
+      }
+      else
+      {
+        this.input_type = 'password';
+        this.visibiity_icon = 'visibility';
+      }
+  }
+
 }

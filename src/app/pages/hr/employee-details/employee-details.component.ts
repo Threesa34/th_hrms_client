@@ -19,6 +19,7 @@ export class EmployeeDetailsComponent implements OnInit {
   files  = [];  
   ShowReset = false;
 
+_location_permission = [{status:0, title:'Off'}, {status:1, title:'On'}];
 
   userDetails:any = {};
   profilepic:any;

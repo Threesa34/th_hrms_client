@@ -492,6 +492,14 @@ export class EmployeeListComponent implements OnInit {
        },
      },
      {
+      headerName: "Gender", 
+      field: 'gender',
+      filterParams: {
+        resetButton: true,
+        suppressAndOrCondition: true,
+      },
+    },
+     {
        headerName: "Date of Joining", 
        field: 'joining_date',
        filterParams: {
@@ -581,6 +589,22 @@ export class EmployeeListComponent implements OnInit {
    });
  }
 
+ setDefaultPassword(id)
+ {
+   this._MastersService.setDefaultPassword(id).subscribe((res:any)=>{
+    var resAlert ={
+      title: res.title,
+      text: res.message,
+      type: res.type,
+    }
+     Swal.fire(resAlert).then((result) => {
+      if (res.status === 1) {
+        
+      } else {
+      }
+    }); 
+   });
+ }
 
 
  onPageSizeChanged(newageSize) {

@@ -150,6 +150,7 @@ existing_salary_id:number;
           total = total + val.amount;
       });
 
+
       var perDaySalary =  Number(total)/Number(this.attendancedetails.no_days);
 
       if(this.existing_salary_id != undefined && this.existing_salary_id > 0)
@@ -159,7 +160,11 @@ existing_salary_id:number;
       }
       else
       {
-      this.totalEarnedComponent = (perDaySalary * Number(this.attendancedetails.prest_days_count + this.attendancedetails.latemarks_count)) + (perDaySalary * Number(this.attendancedetails.half_days_count/2));
+
+
+      //this.totalEarnedComponent = (perDaySalary * Number(this.attendancedetails.prest_days_count + this.attendancedetails.latemarks_count)) + (perDaySalary * Number(this.attendancedetails.half_days_count/2));
+
+      this.totalEarnedComponent = (perDaySalary * Number(this.attendancedetails.total_present_days_count)) + (perDaySalary * Number(this.attendancedetails.half_days_count/2));
 
       this.totalEarnedComponent = Math.round(this.totalEarnedComponent);
       }
@@ -236,15 +241,31 @@ existing_salary_id:number;
 
     this._MastersService.getAttendanceReport(loadout).subscribe((res: any) => {
       this.attendancedetails = res[0];
-      this.getTotal(this.fixed_earning)
+      
       if(typeof this.salary_details.salaryMonth == 'string')
       {
         var year = this.salary_details.salaryMonth.substring(0,4)
         var month = this.salary_details.salaryMonth.substring(5,7)
         this.attendancedetails.no_days = this.daysInMonth(month,year)
+        this.getTotal(this.fixed_earning)
       }
       else
-      this.attendancedetails.no_days = this.daysInMonth(this.salary_details.salaryMonth.getMonth()+1, this.salary_details.salaryMonth.getFullYear())
+      {
+       
+        this.attendancedetails.no_days = this.daysInMonth(this.salary_details.salaryMonth.getMonth()+1, this.salary_details.salaryMonth.getFullYear());
+        this.getTotal(this.fixed_earning)
+      }
+
+      if(this.salaryDetails.working_days != undefined && this.salaryDetails.working_days != null)
+      {
+        this.attendancedetails.total_present_days_count = this.salaryDetails.working_days; 
+      }
+      else{
+        this.attendancedetails.total_present_days_count = this.attendancedetails.prest_days_count + this.attendancedetails.latemarks_count
+      }
+      if(this.salaryDetails.working_half_days != undefined && this.salaryDetails.working_half_days != null)
+      this.attendancedetails.half_days_count = this.salaryDetails.working_half_days;
+
       this.grossSalary = this.CalculateTotal(this.totalEarnedComponent,this.getExpenceTotal(this.expances_earning))
     });
     this.getloanRecieptdDetails(employee_id, selectedmonth);
@@ -299,7 +320,7 @@ existing_salary_id:number;
             this.existing_salary_id = this.salaryDetails.id;
           this.fixed_earning = JSON.parse(this.salaryDetails.fixed);
           this.expances_earning = JSON.parse(this.salaryDetails.earned);
-          this.deductions = JSON.parse(this.salaryDetails.deductions); 
+          this.deductions = JSON.parse(this.salaryDetails.deductions);  
           }
 
           this.getAttendanceReport(employee_id, salary_month);
@@ -329,13 +350,16 @@ existing_salary_id:number;
   saveSalarySlip()
   {
 
-
     var divContents = document.getElementById("print").innerHTML; 
 
-    var html = '<html><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"><style>table.borderless tr,table.borderless td,table.borderless th{border: none;}.company-heading{font-size: 28px;font-weight: bold;}</style></head><body>'+divContents+'</body></html>'
-    
+    var html = '<html><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"><style>table.borderless tr,table.borderless td,table.borderless th{border: none;}thead, tbody, tr, th, td{padding:5px !important;font-size:10px!important}.company-heading{font-size: 20px;font-weight: bold;}</style></head><body>'+divContents+'</body></html>'
+  
 
-    var payload = {html:html,fixed: JSON.stringify(this.fixed_earning), earned: JSON.stringify(this.expances_earning), deductions: JSON.stringify(this.deductions), net_salary: this.grossSalary - this.total_deduction, salary_month:new Date(this.salary_details.salaryMonth+'-01'), employee_id:this.salary_details.employee_id, finalfixedearns: this.totalEarnedComponent, emp_name:this.attendancedetails.name, salary_file_month:this.selectedMonth}
+    var working_days = this.attendancedetails.total_present_days_count;
+    
+    var working_half_days = this.attendancedetails.half_days_count;
+
+    var payload = {html:html,fixed: JSON.stringify(this.fixed_earning), earned: JSON.stringify(this.expances_earning), deductions: JSON.stringify(this.deductions), net_salary: this.grossSalary - this.total_deduction, salary_month:new Date(this.salary_details.salaryMonth+'-01'), employee_id:this.salary_details.employee_id, finalfixedearns: this.totalEarnedComponent, emp_name:this.attendancedetails.name, salary_file_month:this.selectedMonth , working_days: working_days, working_half_days: working_half_days}
 
     if(this.existing_salary_id && this.existing_salary_id > 0)
     {

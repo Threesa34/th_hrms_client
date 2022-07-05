@@ -34,7 +34,7 @@ export class loanRequestDetails implements OnInit{
     {id:1,title:'Approved'},
     {id:2,title:'Denied'},
   ]
- 
+  EmployeeDetails:any;
   constructor(private _MastersService : MastersService, private cookieService: CookieService, @Inject(MAT_DIALOG_DATA) public data: Number) {}
 
   ngOnInit(): void {
@@ -44,6 +44,7 @@ export class loanRequestDetails implements OnInit{
         this.getloanRequestDetails(this.data)
     }
     this.getStatusOptions();
+    this.getEmployeesList();
   }
 
   statusOptions:any;
@@ -53,6 +54,16 @@ export class loanRequestDetails implements OnInit{
     this.statusOptions =  this._MastersService.getStatusOptions(); 
   }
 
+
+  getEmployeesList()
+  {
+    this._MastersService.getEmployeesList().subscribe((res:any)=>{
+      if(!res.status)
+      {
+        this.EmployeeDetails = res;
+      }
+    });
+  }
   
   getloanRequestDetails(id)
   {
@@ -111,7 +122,9 @@ export class loanRequestDetails implements OnInit{
 
    saveLoanRequest()
   {
+    if(this.loanRequestDetails.status == undefined || this.loanRequestDetails.status == null)
     this.loanRequestDetails.status = 1;
+    
     this._MastersService.saveLoanRequest(this.loanRequestDetails).subscribe((res: any) => {
       var resAlert ={
         title: res.title,

@@ -18,6 +18,17 @@
             <mat-label>Description / Text Message</mat-label>
             <textarea matInput [(ngModel)]="newsLetterDetails.description" disabled></textarea>
         </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+          <mat-label>Whatsapp Contact</mat-label>
+          <input matInput [(ngModel)]="newsLetterDetails.whatsapp_no" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Whatsapp Message</mat-label>
+        <input matInput [(ngModel)]="newsLetterDetails.whatsapp_msg" disabled>
+    </mat-form-field>
+
         <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
           <mat-label>URL</mat-label>
           <input matInput [(ngModel)]="newsLetterDetails.shorten_url" disabled>

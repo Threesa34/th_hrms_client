@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {  FileUploader } from 'ng2-file-upload';
 import * as XLSX from 'xlsx';
+import { HttpUrlEncodingCodec } from '@angular/common/http';
 
 
 
@@ -18,6 +19,7 @@ import * as XLSX from 'xlsx';
 })
 export class shareOnEmail implements OnInit{
 
+  
   
   constructor(private _MastersService : MastersService, @Inject(MAT_DIALOG_DATA) public data: any) {}
 
@@ -41,7 +43,7 @@ export class shareOnEmail implements OnInit{
     this.templateDetails = this.data;
   }
 
-  
+ 
   addNewMember()
   {
     if(this.membersList.length > 0 && this.membersList[this.membersList.length - 1] != '' && this.membersList[this.membersList.length - 1] != undefined && this.membersList[this.membersList.length - 1] != null)
@@ -165,6 +167,7 @@ export class shareOnmessage implements OnInit{
     this.templateDetails = this.data;
   }
 
+
   
   addNewMember()
   {
@@ -265,6 +268,9 @@ export class shareOnmessage implements OnInit{
 })
 export class NewsLettersCampaignComponent implements OnInit {
 
+
+  codec = new HttpUrlEncodingCodec;
+
   adv_id:number;
   htmlTemplate:any='';
   newsLetterDetails:any = {};
@@ -281,6 +287,10 @@ export class NewsLettersCampaignComponent implements OnInit {
     }
   }
 
+  ngEncode(param: string){
+    return this.codec.encodeValue(param);
+  }
+  
   getnewsLetterDetails(id)
   {
     
@@ -297,10 +307,28 @@ shareOnWhatsApp()
  
   url = url+this.newsLetterDetails.description;
 
+  /* if(this.newsLetterDetails.whatsapp_no != undefined && this.newsLetterDetails.whatsapp_no != null && this.newsLetterDetails.whatsapp_no != '')
+  {
+      var str = "https://wa.me/"+this.newsLetterDetails.whatsapp_no+"?text="
+      if(this.newsLetterDetails.whatsapp_msg != undefined && this.newsLetterDetails.whatsapp_msg != null && this.newsLetterDetails.whatsapp_msg != '')
+      {
+          str = str+ (this.newsLetterDetails.whatsapp_msg).replace(/ /g, "%20").replace(/\s+ /g, "%20");
+
+          str = this.ngEncode(str)
+      }
+
+      var whatsappLink = '%0ALink for whatsapp chat:%0A'+ str;
+  }
+else
+{
+  var whatsappLink = '';
+} */ 
+
   if(this.newsLetterDetails.shorten_url != undefined && this.newsLetterDetails.shorten_url != null && this.newsLetterDetails.shorten_url != '')
   {
     url = url+'%0AClick the link below:%0A'+this.newsLetterDetails.shorten_url;
   }
+  url = url; // + whatsappLink;
 
   window.open(url,'_blank'); 
 }

@@ -259,6 +259,14 @@ export class MastersService {
     }));
   }
 
+  setDefaultPassword(id):Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/setDefaultPassword/'+id).pipe(map(data => {
+      return data;
+    }));
+  }
+  
+
   getLoanHistory(id):Observable<any>
   {
     return this.httpClient.get<any>(environment.endpoint_url+'/api/getLoanHistory/'+id).pipe(map(data => {

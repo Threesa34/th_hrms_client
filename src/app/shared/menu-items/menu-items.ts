@@ -127,6 +127,10 @@ const MENUITEMS_siteadmin = [
           name: 'Advertisements',
         },
         {
+          state: 'enquiries',
+          name: 'Website Enquiries',
+        },
+        {
           state: 'news_letters_feedback',
           name: 'Feedback'
         },

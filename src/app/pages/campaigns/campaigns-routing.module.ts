@@ -4,7 +4,7 @@ import { NewsLettersComponent } from './news-letters/news-letters.component';
 import { NewsLettersDetailsComponent } from './news-letters-details/news-letters-details.component';
 import { NewsLettersResponseComponent } from './news-letters-response/news-letters-response.component';
 import { NewsLettersCampaignComponent } from './news-letters-campaign/news-letters-campaign.component';
-
+import { EnquiriesComponent } from './enquiries/enquiries.component';
 
 const routes: Routes = [
   {
@@ -56,6 +56,16 @@ const routes: Routes = [
           icon:'feedback'
         },
       }, 
+      {
+        path: 'enquiries',
+        component: EnquiriesComponent                                                                                                                                                                           ,
+        data: {
+          breadcrumb: 'Website Enquiries',
+          status: true,
+          icon:'feedback'
+        },
+      }, 
+
     ]
   }
 

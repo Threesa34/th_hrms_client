@@ -539,6 +539,14 @@ public getMessages = () => {
   }));
   }
 
+  getWebsiteEnquies():Observable<any>
+  {
+    return this.httpClient.get(environment.endpoint_url+'/api/getWebsiteEnquies/').pipe(map(data => {
+      return data;
+  }));
+  }
+  
+
   getnewsLetterDetails(id):Observable<any>
   {
     return this.httpClient.get(environment.endpoint_url+'/api/getnewsLetterDetails/'+id).pipe(map(data => {

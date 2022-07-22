@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endpoint_url:'http://103.252.7.5:8895'
+  endpoint_url:'https://threesainfoway.net:8896'
 };
 
 /*

@@ -12,10 +12,12 @@ import { NewsLettersComponent } from './news-letters/news-letters.component';
 import { NewsLettersDetailsComponent } from './news-letters-details/news-letters-details.component';
 import { NewsLettersResponseComponent, customerFeedback } from './news-letters-response/news-letters-response.component';
 import { NewsLettersCampaignComponent, shareOnEmail, shareOnmessage } from './news-letters-campaign/news-letters-campaign.component';
+import { EnquiriesComponent } from './enquiries/enquiries.component';
+import { DetailsComponent } from './enquiries/sub_modules/details/details.component';
 
 
 @NgModule({
-  declarations: [NewsLettersComponent, NewsLettersDetailsComponent, NewsLettersResponseComponent,customerFeedback,  NewsLettersCampaignComponent, shareOnEmail, shareOnmessage],
+  declarations: [NewsLettersComponent, NewsLettersDetailsComponent, NewsLettersResponseComponent,customerFeedback,  NewsLettersCampaignComponent, shareOnEmail, shareOnmessage, EnquiriesComponent, DetailsComponent],
   imports: [
     CommonModule,
     CampaignsRoutingModule,
@@ -25,6 +27,7 @@ import { NewsLettersCampaignComponent, shareOnEmail, shareOnmessage } from './ne
     MaterialModules,
     FormsModule,
     ReactiveFormsModule,
-  ]
+  ],
+  
 })
 export class CampaignsModule { }

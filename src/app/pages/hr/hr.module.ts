@@ -16,10 +16,15 @@ import { LoanRequestComponent, loanRequestDetails } from './loan-request/loan-re
 import { LoanPaymentComponent, loanRecieptDetails } from './loan-payment/loan-payment.component';
 import { LeaveManagementComponent, leavesDetails } from './leave-management/leave-management.component';
 import { AttendanceReportComponent } from './attendance-report/attendance-report.component';
+
+
+
+
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import {NgxPrintModule} from 'ngx-print';
+import { DesignationManagerComponent, designantionDetails } from './designation-manager/designation-manager.component';
 @NgModule({
-  declarations: [EmployeeListComponent, shiftAssignment, attendanceReport, apprisalHistory, setAttendance, salarySlipHistory, loanHistory, employeeReview, EmployeeDetailsComponent, AttendanceListComponent, DashboardComponent, ShiftManagementComponent, shiftDetails, SalaryManagementComponent, leaveHistory, salaryDetails, SalaryProcessComponent, LoanRequestComponent, loanRequestDetails, LoanPaymentComponent, loanRecieptDetails, LeaveManagementComponent, leavesDetails, AttendanceReportComponent],
+  declarations: [EmployeeListComponent, shiftAssignment, attendanceReport, apprisalHistory, setAttendance, salarySlipHistory, loanHistory, employeeReview, EmployeeDetailsComponent, AttendanceListComponent, DashboardComponent, ShiftManagementComponent, shiftDetails, SalaryManagementComponent, leaveHistory, salaryDetails, SalaryProcessComponent, LoanRequestComponent, loanRequestDetails, LoanPaymentComponent, loanRecieptDetails, LeaveManagementComponent, leavesDetails, AttendanceReportComponent, DesignationManagerComponent, designantionDetails],
   imports: [
     CommonModule,
     HrRoutingModule,
@@ -29,7 +34,8 @@ import {NgxPrintModule} from 'ngx-print';
     MaterialModules,
     FormsModule,
     ReactiveFormsModule,
-    PdfViewerModule
+    PdfViewerModule,
+    
   ]
 })
 export class HrModule { }

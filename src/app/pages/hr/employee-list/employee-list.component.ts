@@ -4,9 +4,18 @@ import { MastersService } from '../../../services/masters.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 
-const deleteConfirm = {
+const disableConfirm = {
   title: 'Are you sure?',
   text: 'Want to deacivate selected Users/users',
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonText: 'Yes, proceed!',
+  cancelButtonText: 'No, keep it'
+}
+
+const deleteConfirm = {
+  title: 'Are you sure?',
+  text: 'Want to permanently delete selected User(s)',
   type: 'warning',
   showCancelButton: true,
   confirmButtonText: 'Yes, proceed!',
@@ -54,12 +63,13 @@ monthNames:object = ['January', 'February', 'March', 'April', 'May', 'June', 'Ju
 const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
 this.yearsRange = range(currentYear, currentYear - 10, -1); 
 }
- 
    getAttendanceReport(selectedMonth)
   {
     var loadout = {employee_id: this.data[0].id, date: selectedMonth};
     this._MastersService.getAttendanceReport(loadout).subscribe((res: any) => {
       this.attendancedetails = res[0];
+      
+      
     });
   } 
   getAttendanceList(selectedMonth)
@@ -509,6 +519,14 @@ export class EmployeeListComponent implements OnInit {
      },
 
      {
+       headerName: "Designation", 
+       field: 'designationname',
+       filterParams: {
+         resetButton: true,
+         suppressAndOrCondition: true,
+       },
+     },
+     {
        headerName: "Role", 
        field: 'role_name',
        filterParams: {
@@ -684,6 +702,42 @@ openemployeeReview(){
 
    userids = userids.substr(0, userids.length - 1);
    
+   Swal.fire(disableConfirm).then((result) => {
+     if (result.value) {
+   this._MastersService.disableUsers({userids:userids}).subscribe((res: any) => {
+     alertPopup.text = res.message;
+     alertPopup.title = res.title;
+     alertPopup.type = res.type;
+
+     Swal.fire(alertPopup).then((result) => {
+       if (res.status === 0) {
+ 
+       } else {
+         this.getUsersList()
+       }
+     });
+   });
+ } else if (result.dismiss === Swal.DismissReason.cancel) {
+   Swal.fire(
+     'Cancelled',
+     'Your record is safe :)',
+     'error'
+   )
+ }
+ });
+ 
+ }
+
+ deleteEmployee()
+ {
+   var userids = '';
+   this.selectedRows.map(function(value)
+   {
+     userids = userids+value.id+',';
+   });
+
+   userids = userids.substr(0, userids.length - 1);
+   
    Swal.fire(deleteConfirm).then((result) => {
      if (result.value) {
    this._MastersService.deleteUsers({userids:userids}).subscribe((res: any) => {
@@ -702,7 +756,7 @@ openemployeeReview(){
  } else if (result.dismiss === Swal.DismissReason.cancel) {
    Swal.fire(
      'Cancelled',
-     'Your imaginary file is safe :)',
+     'Your record is safe :)',
      'error'
    )
  }

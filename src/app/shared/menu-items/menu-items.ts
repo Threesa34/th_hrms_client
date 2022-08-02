@@ -83,6 +83,10 @@ const MENUITEMS_siteadmin = [
           name: 'Employee',
         },
         {
+          state: 'designation',
+          name: 'Designation',
+        },
+        {
           state: 'shift_management',
           name: 'Shift Management'
         },
@@ -134,6 +138,10 @@ const MENUITEMS_siteadmin = [
           state: 'news_letters_feedback',
           name: 'Feedback'
         },
+        {
+          state: 'qr_codes',
+          name: 'QR Code Generator'
+        },
       ]
     },
 	  /* {
@@ -174,6 +182,13 @@ const MENUITEMS_hr = [
         name: 'Employees',
         type: 'link',
         icon: 'people_alt',
+	  },
+	  {
+        main_state: 'hr',
+        state: 'designation',
+        name: 'Designation',
+        type: 'link',
+        icon: 'workspace_premium',
 	  },
 	  {
         main_state: 'hr',
@@ -237,6 +252,168 @@ const MENUITEMS_hr = [
 ];
 
 
+
+const MENUITEMS_manager = [
+  {
+    label: 'Navigation',
+    main: [
+      {
+        main_state: 'manager',
+        state: 'dashboard',
+        name: 'Dashboard',
+        type: 'link',
+        icon: 'dashboard',
+	  },
+	  {
+        main_state: 'manager',
+        state: 'employee',
+        name: 'Employees',
+        type: 'link',
+        icon: 'people_alt',
+	  },
+	  
+	  {
+        main_state: 'manager',
+        state: 'attendance',
+        name: 'Employee Attendance',
+        type: 'link',
+        icon: 'alarm',
+	  },
+	  {
+        main_state: 'manager',
+        state: 'shift_management',
+        name: 'Shift Management',
+        type: 'link',
+        icon: 'watch_later',
+	  },
+	  {
+        main_state: 'manager',
+        state: 'leaves',
+        name: 'Employee Leaves',
+        type: 'link',
+        icon: 'beach_access',
+	  },
+	  {
+        main_state: 'manager',
+        state: 'loan_payment',
+        name: 'Loan Requests',
+        type: 'link',
+        icon: 'account_balance',
+	  },
+	  {
+        main_state: 'manager',
+        state: 'loan_reciepts',
+        name: 'Loan Reciept',
+        type: 'link',
+        icon: 'account_balance',
+	  },
+	  
+	 
+	 /*  {
+        main_state: 'hr',
+        state: 'attendance_report',
+        name: 'Employee Attendance Report',
+        type: 'link',
+        icon: 'description',
+	  }, */
+    ],
+  },
+
+];
+
+const MENUITEMS_staff = [
+  {
+    label: 'Navigation',
+    main: [
+      {
+        main_state: 'staff',
+        state: 'dashboard',
+        name: 'Dashboard',
+        type: 'link',
+        icon: 'dashboard',
+	  },
+	  {
+        main_state: 'staff',
+        state: 'attendance',
+        name: 'My Attendance',
+        type: 'link',
+        icon: 'alarm',
+	  },
+	  {
+        main_state: 'staff',
+        state: 'leaves',
+        name: 'My Leaves',
+        type: 'link',
+        icon: 'beach_access',
+	  },
+	  {
+        main_state: 'staff',
+        state: 'loan_payment',
+        name: 'Loan Requests',
+        type: 'link',
+        icon: 'account_balance',
+	  },
+	  {
+        main_state: 'staff',
+        state: 'loan_reciepts',
+        name: 'Loan Reciept',
+        type: 'link',
+        icon: 'account_balance',
+	  },
+	  
+	 
+	 /*  {
+        main_state: 'hr',
+        state: 'attendance_report',
+        name: 'Employee Attendance Report',
+        type: 'link',
+        icon: 'description',
+	  }, */
+    ],
+  },
+
+];
+
+
+
+const MENUITEMS_campaigns = [
+  {
+    label: 'Navigation',
+    main: [
+      {
+        main_state: 'campaigns',
+        state: 'dashboard',
+        name: 'Dashboard',
+        type: 'link',
+        icon: 'dashboard',
+	  },
+      {
+        main_state: 'campaigns',
+        state: 'enquiries',
+        name: 'Website Enquiries',
+        type: 'link',
+        icon: 'info',
+	  },
+      {
+        main_state: 'campaigns',
+        state: 'news_letters',
+        name: 'Advertisements',
+        type: 'link',
+        icon: 'featured_video',
+	  },
+      {
+        main_state: 'campaigns',
+        state: 'news_letters_feedback',
+        name: 'Feedback',
+        type: 'link',
+        icon: 'feedback',
+	  },
+    ],
+  },
+
+];
+
+/*
 const MENUITEMS = [
   {
     label: 'Navigation',
@@ -319,12 +496,12 @@ const MENUITEMS = [
     ],
   },
 
-];
+];*/
 
 @Injectable()
 export class MenuItems {
   getAll(): Menu[] {
-    return MENUITEMS;
+    return [];
   }
 
   getMenusAgainstUserRol(userRole): Menu[] {

@@ -21,7 +21,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { environment } from '../environments/environment';
 
-const config: SocketIoConfig = { url: environment.endpoint_url, options: {} };
+// const config: SocketIoConfig = { url: environment.endpoint_url, options: {} };
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ const config: SocketIoConfig = { url: environment.endpoint_url, options: {} };
     HttpClientModule,
     AgGridModule.withComponents([]),
     HttpClientJsonpModule,
-    SocketIoModule.forRoot(config)
+    // SocketIoModule.forRoot(config)
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpInterpritorService, multi: true },CookieService, AccordionLinkDirective, AccordionDirective, AccordionAnchorDirective],
   bootstrap: [AppComponent]

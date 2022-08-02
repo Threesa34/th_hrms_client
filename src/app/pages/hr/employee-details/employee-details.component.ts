@@ -32,9 +32,11 @@ _location_permission = [{status:0, title:'Off'}, {status:1, title:'On'}];
   adhaar_pic;resume;
   ngOnInit(): void {
     this.getStatusOptions();
+    this.getManagersList();
     this.getUserRoles();
     var employeeid = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     this.getworkingShiftList();
+    this.getActivateDesignationList();
     if(employeeid && employeeid > 0){
       this.getUserDetails(employeeid);
    
@@ -157,6 +159,18 @@ _location_permission = [{status:0, title:'Off'}, {status:1, title:'On'}];
   }
  
 
+  designationList:any;
+  getActivateDesignationList()
+  {
+    this._MastersService.getActivateDesignationList().subscribe((res:any)=>{
+      if(!res.status)
+    {
+      this.designationList = res;
+    }
+    });
+  }
+ 
+
   saveUserDetails()
   {
     let data = new FormData();
@@ -207,6 +221,20 @@ _location_permission = [{status:0, title:'Off'}, {status:1, title:'On'}];
       
     });
   }
+
+  ManagersList:any;
+  getManagersList()
+  {
+    this._MastersService.getManagersList().subscribe((res:any)=>{
+      
+      {
+        this.ManagersList = res;
+      }
+      
+    });
+  }
+
+
   getUserDetails(userid)
   {
     this._MastersService.getUserDetails(userid).subscribe((res:any)=>{

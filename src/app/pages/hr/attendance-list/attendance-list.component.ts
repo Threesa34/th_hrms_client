@@ -258,8 +258,17 @@ getAbsenceList()
   });
 }
 
+selectedPageSize = '10';
+_pageSizes: any = ['10', '25', '50', '100', 'All'];
 
 onPageSizeChanged(newageSize) {
+  if(newageSize == 'All')
+  {
+   this.paginationPageSize = parseInt(this.rowData.length)
+  }
+  else{
+   this.paginationPageSize = parseInt(newageSize)
+  }
   var value = this.paginationPageSize;
   this.gridApi.paginationSetPageSize(Number(value));
 }

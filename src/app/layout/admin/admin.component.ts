@@ -69,9 +69,12 @@ export class AdminComponent implements OnInit {
   ];
 
   constructor(public menuItems: MenuItems, public router: Router, private cookieService: CookieService,public _MastersService: MastersService) {
-    this.userRole =  this.cookieService.get('role');
-    this.userRole = this.userRole.toLocaleLowerCase();
 
+    this.userRole =  localStorage.getItem('role');
+    this.userRole = this.userRole.toLocaleLowerCase();
+    
+    this.menuList = [];
+    
     this.menuList = this.menuItems.getMenusAgainstUserRol(this.userRole);
 
 
@@ -86,7 +89,7 @@ export class AdminComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAttendanceStatus();
+    // this.getAttendanceStatus();
   }
 
   toggleSubMenu(_obj)
@@ -195,24 +198,39 @@ export class AdminComponent implements OnInit {
     this._MastersService.getAttendanceStatus().subscribe((res:any)=>{
       if(res)
       {
-        console.log(res)
         this.attendanceStatus = res.status;
       }
     });
   }
+
+
+  deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
 
   SignOut()
   {
     this._MastersService.SignOut().subscribe((res:any)=>{
       if(res)
       {
+        this.deleteAllCookies();
+        localStorage.clear();
+        this.cookieService.deleteAll();
         var resAlert ={
           title: res.title,
           text: res.message,
           type: res.type,
         }
          Swal.fire(resAlert).then((result) => {
-          this.router.navigate(['/']);
+          
+            this.router.navigate(['/']);
           }); 
       }
     });

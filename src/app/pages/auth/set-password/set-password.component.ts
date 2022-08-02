@@ -56,9 +56,9 @@ export class SetPasswordComponent implements OnInit {
        Swal.fire(resAlert).then((result) => {
         if(res.status == 1)
         {
-            if(this.cookieService.get('role') != undefined)
+            if(localStorage.getItem('role') != undefined)
             {
-                  this._router.navigate(['/'+this.cookieService.get('role').toLowerCase()]);
+                  this._router.navigate(['/'+localStorage.getItem('role').toLowerCase()]);
             }
             else{
               this._router.navigate(['/authentication']);

@@ -42,7 +42,7 @@ export class leavesDetails implements OnInit{
   constructor(private _MastersService : MastersService, private cookieService: CookieService, @Inject(MAT_DIALOG_DATA) public data: Number) {}
 
   ngOnInit(): void {
-    this.userRole = this.cookieService.get('role');
+    this.userRole = localStorage.getItem('role');
     if(this.data != undefined && this.data > 0)
     {
         this.getleaveDetails(this.data)

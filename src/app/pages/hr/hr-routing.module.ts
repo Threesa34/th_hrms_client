@@ -11,6 +11,7 @@ import { LoanRequestComponent } from './loan-request/loan-request.component';
 import { LoanPaymentComponent } from './loan-payment/loan-payment.component';
 import { LeaveManagementComponent } from './leave-management/leave-management.component';
 import { AttendanceReportComponent } from './attendance-report/attendance-report.component';
+import { DesignationManagerComponent } from './designation-manager/designation-manager.component';
 
 function getSalaryMonth()
 {
@@ -43,6 +44,15 @@ const routes: Routes = [
         data: {
           breadcrumb: 'Dashboard',
           status: true
+        },
+      }, 
+      {
+        path: 'designation',
+        component: DesignationManagerComponent,
+        data: {
+          breadcrumb: 'Designations',
+          status: true,
+          icon:'workspace_premium'
         },
       }, 
       {

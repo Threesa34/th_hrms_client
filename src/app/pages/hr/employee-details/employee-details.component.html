@@ -85,9 +85,23 @@
     </mat-form-field>
 
     <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Designantion</mat-label>
+        <mat-select [(ngModel)]="userDetails.designation">
+            <mat-option *ngFor="let _obj of designationList" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
         <mat-label>Role</mat-label>
         <mat-select [(ngModel)]="userDetails.role">
             <mat-option *ngFor="let _obj of userRoles" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Manager</mat-label>
+        <mat-select [(ngModel)]="userDetails.manager_id">
+            <mat-option *ngFor="let _obj of ManagersList" [value]="_obj.id">{{_obj.name}}</mat-option>
           </mat-select>
     </mat-form-field>
 

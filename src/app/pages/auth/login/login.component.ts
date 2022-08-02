@@ -28,8 +28,36 @@ export class LoginComponent implements OnInit {
 
   signinRes:any;
   ngOnInit(): void {
+    if(localStorage.getItem('_id') != undefined && parseInt(localStorage.getItem('_id')) > 0)
+    this.autoLogin()
   }
 
+
+  autoLogin() {
+    
+    this._AuthenticationService.autoAuthenticate({id: parseInt(localStorage.getItem('_id'))}).subscribe((res: any) => {
+      if(res)
+        {
+
+          this.signinRes = res;
+          if(res.success == true)
+          {
+            this.cookieService.set('token', res.token );
+            localStorage.setItem('role', res.rolename)
+            localStorage.setItem('_id', res._id)
+            localStorage.setItem('name', res.name)
+            if(res.firstlogin == 0)
+            {
+                this._router.navigate(['/authentication/set_password']);
+            }
+            else{
+                this._router.navigate(['/'+res.rolename.toLowerCase()]);
+            }
+          }
+        }
+    }); 
+    
+  }
 
   AuthenticateUser() {
     
@@ -41,8 +69,9 @@ export class LoginComponent implements OnInit {
           if(res.success == true)
           {
             this.cookieService.set('token', res.token );
-            this.cookieService.set('role', res.rolename );
-            this.cookieService.set('_id', res._id );
+            localStorage.setItem('role', res.rolename)
+            localStorage.setItem('_id', res._id)
+            localStorage.setItem('name', res.name)
             if(res.firstlogin == 0)
             {
                 this._router.navigate(['/authentication/set_password']);

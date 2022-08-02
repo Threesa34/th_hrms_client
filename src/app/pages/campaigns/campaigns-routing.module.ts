@@ -5,6 +5,7 @@ import { NewsLettersDetailsComponent } from './news-letters-details/news-letters
 import { NewsLettersResponseComponent } from './news-letters-response/news-letters-response.component';
 import { NewsLettersCampaignComponent } from './news-letters-campaign/news-letters-campaign.component';
 import { EnquiriesComponent } from './enquiries/enquiries.component';
+import { QrCodesComponent } from './qr-codes/qr-codes.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,16 @@ const routes: Routes = [
           breadcrumb: 'Website Enquiries',
           status: true,
           icon:'feedback'
+        },
+      }, 
+
+      {
+        path: 'qr_codes',
+        component: QrCodesComponent                                                                                                                                                                           ,
+        data: {
+          breadcrumb: 'QR Code Generator',
+          status: true,
+          icon:'qr_code'
         },
       }, 
 

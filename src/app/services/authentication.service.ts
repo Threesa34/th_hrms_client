@@ -19,6 +19,14 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient) { }
 
+  autoAuthenticate(logindetails): Observable<any> {
+    return this.httpClient.post(environment.endpoint_url+'/api/autoAuthenticate',logindetails, httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
   authenticateEmployee(logindetails): Observable<any> {
     return this.httpClient.post(environment.endpoint_url+'/api/authenticateEmployee',logindetails, httpOptions)
     .pipe(

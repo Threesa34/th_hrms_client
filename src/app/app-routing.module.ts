@@ -50,6 +50,26 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'manager',
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./pages/manager/manager.module').then(m => m.ManagerModule)
+      },
+    ]
+  },
+  {
+    path: 'staff',
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./pages/staff/staff.module').then(m => m.StaffModule)
+      },
+    ]
+  },
+  {
     path: 'campaign',
     component: AdminComponent,
     children: [

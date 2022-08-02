@@ -43,7 +43,7 @@ export class loanRecieptDetails implements OnInit{
   constructor(public _MastersService : MastersService, public cookieService: CookieService, @Inject(MAT_DIALOG_DATA) public data: Number) {}
 
   ngOnInit(): void {
-    this.userRole = this.cookieService.get('role');
+    this.userRole = localStorage.getItem('role');
     if(this.data != undefined && this.data > 0)
     {
         this.getloanRecieptDetails(this.data)

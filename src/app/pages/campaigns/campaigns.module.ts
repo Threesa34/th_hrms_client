@@ -14,10 +14,12 @@ import { NewsLettersResponseComponent, customerFeedback } from './news-letters-r
 import { NewsLettersCampaignComponent, shareOnEmail, shareOnmessage } from './news-letters-campaign/news-letters-campaign.component';
 import { EnquiriesComponent } from './enquiries/enquiries.component';
 import { DetailsComponent } from './enquiries/sub_modules/details/details.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { QrCodesComponent } from './qr-codes/qr-codes.component';
 
 
 @NgModule({
-  declarations: [NewsLettersComponent, NewsLettersDetailsComponent, NewsLettersResponseComponent,customerFeedback,  NewsLettersCampaignComponent, shareOnEmail, shareOnmessage, EnquiriesComponent, DetailsComponent],
+  declarations: [NewsLettersComponent, NewsLettersDetailsComponent, NewsLettersResponseComponent,customerFeedback,  NewsLettersCampaignComponent, shareOnEmail, shareOnmessage, EnquiriesComponent, DetailsComponent, DashboardComponent, QrCodesComponent],
   imports: [
     CommonModule,
     CampaignsRoutingModule,

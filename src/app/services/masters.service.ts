@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Socket } from 'ngx-socket-io';
-
+// private socket: Socket
 const httpOptions = {
   headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ const httpOptions = {
 })
 export class MastersService {
 
-  constructor(private httpClient: HttpClient, private socket: Socket) { }
+  constructor(private httpClient: HttpClient) { }
 
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
@@ -111,6 +111,13 @@ export class MastersService {
     }));
   }
 
+  getManagersList():Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getManagersList/').pipe(map(data => {
+      return data;
+    }));
+  }
+
   getUserRoles():Observable<any>
   {
     return this.httpClient.get<any>(environment.endpoint_url+'/api/getUserRoles/').pipe(map(data => {
@@ -126,6 +133,13 @@ export class MastersService {
   }
 
   deleteUsers(userIds): Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/deleteEmployee/',userIds).pipe(map(data => {
+							return data;
+					}));
+  }
+
+  disableUsers(userIds): Observable<any>
   {
     return this.httpClient.post(environment.endpoint_url+'/api/disableEmployee/',userIds).pipe(map(data => {
 							return data;
@@ -153,6 +167,7 @@ export class MastersService {
       return data;
     }));
   }
+
   getActivateWorkingShiftList():Observable<any>
   {
     return this.httpClient.get<any>(environment.endpoint_url+'/api/getActivateWorkingShiftList').pipe(map(data => {
@@ -168,6 +183,7 @@ export class MastersService {
     }));
   }
 
+
   invokeShiftsList = new EventEmitter();    
   subsShiftsList: Subscription;  
 
@@ -182,9 +198,48 @@ export class MastersService {
   }));
   }
 
+ 
+
   
 
   // WORKING SHIFT MANAGEMENT
+
+
+  
+  getActivateDesignationList():Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getActivateDesignationList').pipe(map(data => {
+      return data;
+    }));
+  }
+  
+  getDesignationList():Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getDesignationList').pipe(map(data => {
+      return data;
+    }));
+  }
+  
+  getdesignationDetails(id):Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getdesignationDetails/'+id).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  saveDesignationDetails(shiftDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/saveDesignationDetails/',shiftDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
+  invokeDesignationList = new EventEmitter();    
+  subsDesignationList: Subscription;  
+
+  EmitDesignationList(){
+    this.invokeDesignationList.emit();
+  }
 
 
   getPosition(): Promise<any>
@@ -225,6 +280,13 @@ export class MastersService {
   getAttendanceStatus():Observable<any>
   {
     return this.httpClient.get<any>(environment.endpoint_url+'/api/getAttendanceStatus').pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getMobileDashboardRecord():Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getMobileDashboardRecord/').pipe(map(data => {
       return data;
     }));
   }
@@ -508,7 +570,7 @@ export class MastersService {
   
 
   // Chat
-
+/* 
   getChatLog(userid):Observable<any>
   {
     return this.httpClient.get(environment.endpoint_url+'/api/getChatLog/'+userid).pipe(map(data => {
@@ -526,7 +588,7 @@ public getMessages = () => {
               observer.next(message);
           });
   });
-}
+} */
   
   // DASHBOARD
 
@@ -615,4 +677,13 @@ public getMessages = () => {
   
 
   // CAMPAIGN
+
+
+  getUserProfile(userid):Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getUserProfile/'+userid).pipe(map(data => {
+      return data;
+    }));
+  }
+
 }

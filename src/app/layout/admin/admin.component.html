@@ -1,31 +1,39 @@
 <mat-toolbar color="primary" class="fixed-topnav">
-    <a mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="snav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </a>&nbsp;
-    <span>My App</span>
-    <span class="example-spacer"></span>
     
-    <a mat-icon-button (click)="SetAttendance()" [ngClass]="{'text-success': attendanceStatus == 1, 'text-warning':attendanceStatus == 2}">
-      <mat-icon>radio_button_checked</mat-icon>
-    </a>
-&nbsp;
-    <a mat-icon-button (click)="sidenav1.toggle()">
-      <mat-icon matBadge="15" matBadgeColor="accent">mail</mat-icon>
-    </a>
-&nbsp;
-    <a mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-      <mat-icon>account_circle</mat-icon>
-    </a>
-    <mat-menu #menu="matMenu">
-      <a mat-menu-item>
+    <mat-toolbar-row class="mat-elevation-z6">
+      <a mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </a>&nbsp;
+      <span>My App</span>
+      <span class="example-spacer"></span>
+      
+   <!--    <a mat-icon-button (click)="SetAttendance()" [ngClass]="{'text-success': attendanceStatus == 1, 'text-warning':attendanceStatus == 2}">
+        <mat-icon>fingerprint</mat-icon>
+      </a>
+  &nbsp; -->
+      <a mat-icon-button (click)="sidenav1.toggle()">
+        <mat-icon matBadge="15" matBadgeColor="accent">notifications</mat-icon>
+      </a>
+  &nbsp;
+      <a mat-icon-button (click)="SignOut()">
+        <mat-icon>power_settings_new</mat-icon>
+      </a>
+  &nbsp;
+      <!-- <a mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>account_circle</mat-icon>
-        <span>Profile</span>
-      </a>
-      <a mat-menu-item (click)="SignOut()">
-        <mat-icon>login</mat-icon>
-        <span>Signout</span>
-      </a>
-    </mat-menu>
+      </a> -->
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>Profile</span>
+        </a>
+        <a mat-menu-item (click)="SignOut()">
+          <mat-icon>login</mat-icon>
+          <span>Signout</span>
+        </a>
+      </mat-menu>
+    </mat-toolbar-row>
+  
   </mat-toolbar>
 
 
